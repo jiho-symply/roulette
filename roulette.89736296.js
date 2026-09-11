@@ -14,5 +14,5 @@ let t;var e,i=globalThis,s={},o={},a=i.parcelRequire5cc2;null==a&&((a=function(t
     height: 40px;
     font-size: 14pt;
   }
-`,document.head.appendChild(N),localStorage.removeItem("mbr_names"),window.addEventListener("pagehide",()=>localStorage.removeItem("mbr_names"));let q=document.querySelector("#in_names");q&&(q.value="수연*3,정민*3,서현*3,지호*3,형석*3,예인*3,수찬*3,태희*3");let Z=document.querySelector('script[type="module"]')?.src??"",G=Z.match(/\.([0-9a-f]{6,})\.js/)?.[1]??"dev";window.addEventListener("load",()=>{window.umami?.track("version",{v:G})});let K=new j;window.roulette=K,window.options=l;
-//# sourceMappingURL=roulette.1ec61e4e.js.map
+`,document.head.appendChild(N);let q=document.querySelector('script[type="module"]')?.src??"",Z=q.match(/\.([0-9a-f]{6,})\.js/)?.[1]??"dev";window.addEventListener("load",()=>{window.umami?.track("version",{v:Z})});let G=new j;window.roulette=G,window.options=l;
+//# sourceMappingURL=roulette.89736296.js.map
