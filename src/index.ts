@@ -2,6 +2,28 @@ import './localization';
 import options from './options';
 import { Roulette } from './roulette';
 
+// Hide promotional UI from the fork while keeping the original DOM in place
+// so the legacy inline event handlers do not fail on missing elements.
+const cleanUiStyle = document.createElement('style');
+cleanUiStyle.textContent = `
+  #notice,
+  #btnNotice,
+  #btnShop,
+  .copyright,
+  #settings .actions .sep {
+    display: none !important;
+  }
+
+  #settings .actions #btnShuffle,
+  #settings .actions #btnStart {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 40px;
+    font-size: 14pt;
+  }
+`;
+document.head.appendChild(cleanUiStyle);
+
 // 어떤 버전이 실제로 돌고 있는지 관측한다. 옛 서비스워커에 고착된 클라이언트는
 // 이 코드가 없는 번들을 쓰므로 이벤트를 보내지 않는다. 즉 전체 pageview 대비
 // 이 이벤트의 비율이 곧 회수율이다.
