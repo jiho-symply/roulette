@@ -24,6 +24,11 @@ cleanUiStyle.textContent = `
 `;
 document.head.appendChild(cleanUiStyle);
 
+// The upstream page stores names in localStorage. For this fork, do not keep
+// roulette names persistently across reloads or browser sessions.
+localStorage.removeItem('mbr_names');
+window.addEventListener('pagehide', () => localStorage.removeItem('mbr_names'));
+
 const defaultNames = '수연*3,정민*3,서현*3,지호*3,형석*3,예인*3,수찬*3,태희*3';
 const namesInput = document.querySelector<HTMLTextAreaElement>('#in_names');
 if (namesInput) namesInput.value = defaultNames;
