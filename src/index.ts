@@ -24,6 +24,10 @@ cleanUiStyle.textContent = `
 `;
 document.head.appendChild(cleanUiStyle);
 
+const defaultNames = '수연*3,정민*3,서현*3,지호*3,형석*3,예인*3,수찬*3,태희*3';
+const namesInput = document.querySelector<HTMLTextAreaElement>('#in_names');
+if (namesInput) namesInput.value = defaultNames;
+
 // 어떤 버전이 실제로 돌고 있는지 관측한다. 옛 서비스워커에 고착된 클라이언트는
 // 이 코드가 없는 번들을 쓰므로 이벤트를 보내지 않는다. 즉 전체 pageview 대비
 // 이 이벤트의 비율이 곧 회수율이다.
