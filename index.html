@@ -72,7 +72,6 @@
     const names = getNames();
     window.roulette.setMarbles(names);
     ready = names.length > 0;
-    localStorage.setItem('mbr_names', names.join(','));
     applyWinnerSetting();
   }
 
@@ -151,11 +150,6 @@
 
     if (namesFromUrl) {
       document.querySelector('#in_names').value = namesFromUrl.replace(/,/g, '\n');
-    } else {
-      const savedNames = localStorage.getItem('mbr_names');
-      if (savedNames) {
-        document.querySelector('#in_names').value = savedNames;
-      }
     }
     document.querySelector('#in_names').addEventListener('input', () => {
       getReady();
@@ -409,7 +403,7 @@
   </div>
   <div class="left">
     <h3 data-trans>Enter names below</h3>
-    <textarea id="in_names" placeholder="Input names separated by commas or line feed here" data-trans="placeholder">수박*2,키위*2,귤*2</textarea>
+    <textarea id="in_names" placeholder="Input names separated by commas or line feed here" data-trans="placeholder">수연*3,정민*3,서현*3,지호*3,형석*3,예인*3,수찬*3,태희*3</textarea>
     <div class="actions">
       <button id="btnNotice">
         <i class="icon megaphone"></i>
