@@ -121,7 +121,7 @@ export class Marble {
     zoom: number,
     outline: boolean,
     isMinimap: boolean = false,
-    skin: CanvasImageSource | undefined,
+    _skin: CanvasImageSource | undefined,
     viewPort: { x: number; y: number; w: number; h: number; zoom: number },
     theme: ColorTheme
   ) {
@@ -146,7 +146,7 @@ export class Marble {
     if (isMinimap) {
       this._renderMinimap(ctx);
     } else {
-      this._renderNormal(ctx, zoom, outline, skin);
+      this._renderNormal(ctx, zoom, outline);
     }
     ctx.setTransform(transform);
   }
@@ -162,22 +162,9 @@ export class Marble {
     ctx.fill();
   }
 
-  private _renderNormal(ctx: CanvasRenderingContext2D, zoom: number, outline: boolean, skin?: CanvasImageSource) {
-    const hs = this.size / 2;
-
+  private _renderNormal(ctx: CanvasRenderingContext2D, zoom: number, outline: boolean) {
     ctx.fillStyle = `hsl(${this.hue} 100% ${this.theme.marbleLightness + 25 * Math.min(1, this.impact / 500)}%`;
-
-    // ctx.shadowColor = this.color;
-    // ctx.shadowBlur = zoom / 2;
-    if (skin) {
-      transformGuard(ctx, () => {
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.drawImage(skin, -hs, -hs, hs * 2, hs * 2);
-      });
-    } else {
-      this._drawMarbleBody(ctx, false);
-    }
+    this._drawMarbleBody(ctx, false);
 
     ctx.shadowColor = '';
     ctx.shadowBlur = 0;
