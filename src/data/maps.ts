@@ -2997,4 +2997,299 @@ export const stages: StageDef[] = [
       },
     ],
   },
+  {
+    title: 'Heartbreaker Circuit',
+    goalY: 75.5,
+    zoomY: 67.5,
+    entities: [
+      // Outer shell: fully enclosed on both sides, open only past the finish line.
+      {
+        type: 'static',
+        position: { x: 0, y: 0 },
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#7dd3fc',
+          points: [
+            [9, -300],
+            [9, 7.5],
+            [5.5, 10.5],
+            [3.2, 13.5],
+            [2.3, 17.5],
+            [2.3, 45.5],
+            [5, 49.5],
+            [8.5, 53.5],
+            [10.8, 56.8],
+            [6.5, 60.5],
+            [4, 64],
+            [4, 77.5],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.15 },
+      },
+      {
+        type: 'static',
+        position: { x: 0, y: 0 },
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#7dd3fc',
+          points: [
+            [17, -300],
+            [17, 7.5],
+            [20.5, 10.5],
+            [22.8, 13.5],
+            [23.7, 17.5],
+            [23.7, 45.5],
+            [21, 49.5],
+            [17.5, 53.5],
+            [15.2, 56.8],
+            [19.5, 60.5],
+            [22, 64],
+            [22, 77.5],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.15 },
+      },
+
+      // Opening mixer: removes most of the starting-slot advantage before bottleneck #1.
+      {
+        position: { x: 10.4, y: 11.7 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.6, height: 0.11, rotation: 0, color: '#f472b6' },
+        props: { density: 1, angularVelocity: 3.4, restitution: 0.35 },
+      },
+      {
+        position: { x: 15.6, y: 11.7 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.6, height: 0.11, rotation: 0, color: '#f472b6' },
+        props: { density: 1, angularVelocity: -3.4, restitution: 0.35 },
+      },
+      {
+        position: { x: 13, y: 14.8 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.7, color: '#fde047' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.95 },
+      },
+
+      // Bottleneck #1. Both guides are attached to the shell, so there are no side pockets.
+      {
+        type: 'static',
+        position: { x: 0, y: 0 },
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#e2e8f0',
+          points: [
+            [3.2, 13.5],
+            [7.5, 16.5],
+            [10.3, 19.5],
+            [11, 21],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.25 },
+      },
+      {
+        type: 'static',
+        position: { x: 0, y: 0 },
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#e2e8f0',
+          points: [
+            [22.8, 13.5],
+            [18.5, 16.5],
+            [15.7, 19.5],
+            [15, 21],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.25 },
+      },
+
+      // Three route separators. They end well before bottleneck #2 to guarantee a clean merge.
+      {
+        type: 'static',
+        position: { x: 0, y: 0 },
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#38bdf8',
+          points: [
+            [11.3, 22.5],
+            [10.5, 26.5],
+            [11, 30.5],
+            [9.6, 34.5],
+            [10.7, 39],
+            [10, 43],
+            [11, 46.5],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+      {
+        type: 'static',
+        position: { x: 0, y: 0 },
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#a78bfa',
+          points: [
+            [14.7, 22.5],
+            [15.5, 26],
+            [14.8, 30.5],
+            [16.2, 34],
+            [15.1, 38.5],
+            [16, 42.5],
+            [15, 46.5],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+
+      // LEFT ROUTE: longest path, but strong rebound pads can launch marbles forward or back upward.
+      {
+        position: { x: 6.2, y: 26.8 },
+        type: 'static',
+        shape: { type: 'box', width: 2.1, height: 0.14, rotation: 0.48, color: '#38bdf8' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.95 },
+      },
+      {
+        position: { x: 5.5, y: 32.8 },
+        type: 'static',
+        shape: { type: 'box', width: 2.0, height: 0.14, rotation: -0.55, color: '#38bdf8' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.0 },
+      },
+      {
+        position: { x: 6.4, y: 37 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.9, height: 0.11, rotation: 0, color: '#22d3ee' },
+        props: { density: 1, angularVelocity: -3.8, restitution: 0.45 },
+      },
+      {
+        position: { x: 7.1, y: 41.8 },
+        type: 'static',
+        shape: { type: 'box', width: 2.0, height: 0.14, rotation: 0.5, color: '#38bdf8' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.9 },
+      },
+
+      // CENTER ROUTE: shortest geometrically, but rotating gates create the largest time variance.
+      {
+        position: { x: 13, y: 26.8 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.65, height: 0.11, rotation: 0, color: '#f472b6' },
+        props: { density: 1, angularVelocity: 4.4, restitution: 0.3 },
+      },
+      {
+        position: { x: 13, y: 34.4 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 2.05, height: 0.11, rotation: 0, color: '#fb7185' },
+        props: { density: 1, angularVelocity: -3.6, restitution: 0.35 },
+      },
+      {
+        position: { x: 13, y: 41.8 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.65, height: 0.11, rotation: 0, color: '#f472b6' },
+        props: { density: 1, angularVelocity: 4.8, restitution: 0.3 },
+      },
+      {
+        position: { x: 12, y: 30.6 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.42, color: '#fde047' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.95 },
+      },
+      {
+        position: { x: 14, y: 38.3 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.42, color: '#fde047' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.95 },
+      },
+
+      // RIGHT ROUTE: medium length with angled kickers and one rotor; frequent upward rebounds.
+      {
+        position: { x: 19.8, y: 27.2 },
+        type: 'static',
+        shape: { type: 'box', width: 2.1, height: 0.14, rotation: -0.5, color: '#a78bfa' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.0 },
+      },
+      {
+        position: { x: 20.4, y: 33.3 },
+        type: 'static',
+        shape: { type: 'box', width: 1.9, height: 0.14, rotation: 0.58, color: '#a78bfa' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.0 },
+      },
+      {
+        position: { x: 19.5, y: 36.8 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.9, height: 0.11, rotation: 0, color: '#c084fc' },
+        props: { density: 1, angularVelocity: 3.6, restitution: 0.45 },
+      },
+      {
+        position: { x: 19, y: 42 },
+        type: 'static',
+        shape: { type: 'box', width: 2.0, height: 0.14, rotation: -0.52, color: '#a78bfa' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.92 },
+      },
+
+      // Merge mixer before bottleneck #2.
+      {
+        position: { x: 8.8, y: 49 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.7, height: 0.11, rotation: 0, color: '#34d399' },
+        props: { density: 1, angularVelocity: 3.4, restitution: 0.35 },
+      },
+      {
+        position: { x: 17.2, y: 49 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.7, height: 0.11, rotation: 0, color: '#34d399' },
+        props: { density: 1, angularVelocity: -3.4, restitution: 0.35 },
+      },
+      {
+        position: { x: 13, y: 53.6 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.6, height: 0.11, rotation: 0, color: '#fbbf24' },
+        props: { density: 1, angularVelocity: 4.8, restitution: 0.4 },
+      },
+
+      // Bottleneck #2 is formed by the outer shell at y=56.8 (4.4-unit throat).
+
+      // Final chamber: two counter-rotating paddles and bouncy kickers can still send leaders upward.
+      {
+        position: { x: 8.7, y: 62.8 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 2.05, height: 0.11, rotation: 0, color: '#22d3ee' },
+        props: { density: 1, angularVelocity: 4.1, restitution: 0.45 },
+      },
+      {
+        position: { x: 17.3, y: 62.8 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 2.05, height: 0.11, rotation: 0, color: '#c084fc' },
+        props: { density: 1, angularVelocity: -4.1, restitution: 0.45 },
+      },
+      {
+        position: { x: 13, y: 64.4 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.65, color: '#fde047' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.0 },
+      },
+      {
+        position: { x: 8.2, y: 68.7 },
+        type: 'static',
+        shape: { type: 'box', width: 2.4, height: 0.14, rotation: 0.42, color: '#38bdf8' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.0 },
+      },
+      {
+        position: { x: 17.8, y: 68.7 },
+        type: 'static',
+        shape: { type: 'box', width: 2.4, height: 0.14, rotation: -0.42, color: '#a78bfa' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.0 },
+      },
+      {
+        position: { x: 13, y: 70.5 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 1.8, height: 0.1, rotation: 0, color: '#fb7185' },
+        props: { density: 1, angularVelocity: 3.2, restitution: 0.4 },
+      },
+    ],
+  },
+
 ];
